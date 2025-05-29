@@ -2,102 +2,87 @@
 import React, { useEffect, useState } from 'react';
 
 const HeroSection = () => {
-  const [scrollY, setScrollY] = useState(0);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({
+        x: (e.clientX / window.innerWidth) * 100,
+        y: (e.clientY / window.innerHeight) * 100,
+      });
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('mousemove', handleMouseMove);
+    setIsLoaded(true);
+
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   return (
-    <section id="home" className="relative h-screen overflow-hidden">
-      {/* Parallax Background */}
-      <div 
-        className="absolute inset-0 bg-gradient-to-br from-google-blue-600 to-google-blue-800"
-        style={{
-          transform: `translateY(${scrollY * 0.5}px)`,
-        }}
-      >
-        {/* Background Pattern */}
-        <div className="absolute inset-0 hero-pattern opacity-50"></div>
-        
-        {/* Ourense Silhouette (Abstract representation) */}
+    <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      {/* Dynamic Background */}
+      <div className="absolute inset-0">
         <div 
-          className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/20 to-transparent"
+          className="absolute inset-0 bg-gradient-to-br from-google-blue-900/20 via-black to-google-blue-800/30 transition-all duration-1000"
           style={{
-            transform: `translateY(${scrollY * 0.3}px)`,
+            background: `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(66, 133, 244, 0.3) 0%, rgba(0, 0, 0, 0.8) 50%, black 100%)`
           }}
-        >
-          <svg 
-            className="absolute bottom-0 w-full h-24 text-black/10" 
-            fill="currentColor" 
-            viewBox="0 0 1200 100"
-            preserveAspectRatio="none"
-          >
-            <path d="M0,100 L200,80 L400,85 L600,75 L800,80 L1000,85 L1200,90 L1200,100 Z" />
-          </svg>
+        ></div>
+        
+        {/* Animated Particles */}
+        <div className="absolute inset-0">
+          {[...Array(50)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-google-blue-400/30 rounded-full animate-float"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 5}s`,
+                animationDuration: `${3 + Math.random() * 4}s`,
+              }}
+            ></div>
+          ))}
         </div>
       </div>
 
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 gradient-overlay"></div>
-
       {/* Content */}
-      <div className="relative z-10 h-full flex items-center justify-center text-center px-6">
-        <div 
-          className="max-w-4xl mx-auto animate-fade-in"
-          style={{
-            transform: `translateY(${scrollY * 0.2}px)`,
-          }}
-        >
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-            Google Developer Group
-            <span className="block text-3xl md:text-5xl font-normal mt-2 text-white/90">
-              Ourense
+      <div className="relative z-10 text-center max-w-6xl mx-auto px-8">
+        <div className={`transition-all duration-2000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}>
+          {/* Main Tagline */}
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-black leading-none mb-8">
+            <span className="block text-white">OURENSE'S</span>
+            <span className="block bg-gradient-to-r from-google-blue-400 to-google-blue-600 bg-clip-text text-transparent">
+              TECH NEXUS
             </span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Building the future of technology in Galicia through collaboration, learning, and innovation
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button className="bg-white text-google-blue-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 shadow-lg">
-              Join Our Community
-            </button>
-            <button className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-google-blue-600 transition-all duration-300 transform hover:scale-105">
-              Upcoming Events
-            </button>
+          {/* Subtitle */}
+          <div className={`transition-all duration-2000 delay-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}>
+            <p className="text-xl md:text-2xl text-gray-300 font-light mb-12 max-w-2xl mx-auto">
+              Where innovation meets community.
+              <br />
+              <span className="text-google-blue-400">Innovate. Connect. Grow.</span>
+            </p>
           </div>
 
-          {/* Stats */}
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-2xl mx-auto">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-white mb-2">500+</div>
-              <div className="text-white/80">Community Members</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-white mb-2">50+</div>
-              <div className="text-white/80">Events Hosted</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-white mb-2">5+</div>
-              <div className="text-white/80">Years Active</div>
-            </div>
+          {/* CTA */}
+          <div className={`transition-all duration-2000 delay-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}>
+            <button className="group relative px-12 py-4 text-xl font-semibold text-black bg-white rounded-full overflow-hidden transition-all duration-500 hover:scale-105">
+              <span className="relative z-10 group-hover:text-white transition-colors duration-300">
+                Join the Movement
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-google-blue-500 to-google-blue-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+            </button>
           </div>
         </div>
       </div>
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-        <div className="animate-bounce">
-          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse"></div>
-          </div>
+        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center animate-bounce">
+          <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse"></div>
         </div>
       </div>
     </section>

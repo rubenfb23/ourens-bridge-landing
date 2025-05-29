@@ -2,24 +2,22 @@
 import React from 'react';
 import Header from '../components/Header';
 import HeroSection from '../components/HeroSection';
-import AboutSection from '../components/AboutSection';
-import EventsSection from '../components/EventsSection';
-import CommunitySection from '../components/CommunitySection';
-import ContactSection from '../components/ContactSection';
-import Footer from '../components/Footer';
+import ManifestoSection from '../components/ManifestoSection';
+import SpotlightSection from '../components/SpotlightSection';
+import CommunityPulseSection from '../components/CommunityPulseSection';
+import ConnectSection from '../components/ConnectSection';
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-black text-white overflow-x-hidden">
       <Header />
       <main>
         <HeroSection />
-        <AboutSection />
-        <EventsSection />
-        <CommunitySection />
-        <ContactSection />
+        <ManifestoSection />
+        <SpotlightSection />
+        <CommunityPulseSection />
+        <ConnectSection />
       </main>
-      <Footer />
     </div>
   );
 };
