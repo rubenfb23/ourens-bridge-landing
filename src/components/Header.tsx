@@ -23,12 +23,15 @@ const Header = () => {
     >
       <nav className="container mx-auto px-8 py-6">
         <div className="flex items-center justify-between">
-          {/* Minimal Logo */}
+          {/* Logo with uploaded image */}
           <div className="group cursor-pointer">
             <div className="flex items-center space-x-4">
-              <div className="relative w-8 h-8">
-                <div className="absolute inset-0 bg-gradient-to-br from-google-blue-400 to-google-blue-600 rounded-full transform rotate-45 group-hover:rotate-90 transition-transform duration-500"></div>
-                <div className="absolute inset-1 bg-black rounded-full"></div>
+              <div className="relative w-12 h-8">
+                <img 
+                  src="/lovable-uploads/d019d0d9-556a-4544-9e6c-607baa6298e4.png" 
+                  alt="GDG Ourense Logo" 
+                  className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
+                />
               </div>
               <div className="text-2xl font-bold tracking-tight">
                 GDG <span className="text-google-blue-400">Ourense</span>

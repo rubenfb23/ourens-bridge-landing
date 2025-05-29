@@ -63,21 +63,43 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
+				// Google brand colors from the logo
 				'google-blue': {
 					50: '#e3f2fd',
 					100: '#bbdefb',
 					200: '#90caf9',
 					300: '#64b5f6',
-					400: '#42a5f5',
-					500: '#4285f4',
-					600: '#1e88e5',
-					700: '#1976d2',
-					800: '#1565c0',
+					400: '#4285f4',
+					500: '#1976d2',
+					600: '#1565c0',
+					700: '#0d47a1',
+					800: '#0d47a1',
 					900: '#0d47a1'
 				},
-				'google-red': '#ea4335',
-				'google-yellow': '#fbbc05',
-				'google-green': '#34a853'
+				'google-red': {
+					400: '#ea4335',
+					500: '#d33b2c',
+					600: '#c23321'
+				},
+				'google-yellow': {
+					400: '#fbbc05',
+					500: '#f9ab00',
+					600: '#ea8600'
+				},
+				'google-green': {
+					400: '#34a853',
+					500: '#0f9d58',
+					600: '#0a7e07'
+				},
+				// Bridge/heritage inspired colors from logo
+				'ourense-stone': {
+					100: '#f5f1e8',
+					200: '#ede4d3',
+					300: '#e3d5be',
+					400: '#d4c4a8',
+					500: '#c4b292',
+					600: '#b09d7c'
+				}
 			},
 			fontFamily: {
 				'roboto': ['Roboto', 'sans-serif'],
